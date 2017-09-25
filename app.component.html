@@ -1,0 +1,99 @@
+﻿
+
+<div>
+    <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+        
+        <div *ngIf="! costarContactService.isNotAuthorized && loggedContact" class="container-fluid">
+            <div class="navbar-header">
+                <a class="header-color" href="#">EPM-X</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right" id="menu">
+                   
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Permission Group<span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-color">
+                            <li>
+                                <a routerLink="/permissionGroup">Permission Groups</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users<span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-color">
+                            <li>
+                                <a routerLink="/user">CRM Users</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Permissions <span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-color">
+                            <li>
+                                <a routerLink="/securityArea">Security Areas</a>
+                            </li>
+
+                            <li>
+                                <a routerLink='/permissionWizardGroup'>Pemissions Wizard- Group</a>
+                            </li>
+
+                            <li>
+                                <a routerLink='/permissionWizardIndividual'>Pemissions Wizard- Individual</a>
+                            </li>
+                            <li>
+                                <a routerLink='/copyUserPermission'>Copy User Permissions</a>
+                            </li>
+                        </ul>
+                    </li>
+                   <li class="dropdown" *ngIf="costarContactService.isSysAdmin || costarContactService.isEPMTest || costarContactService.isEPMAdmin">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-color">
+                            <li>
+                                <a routerLink='/individualsToGroup'>Individuals to Group Permission</a>
+                            </li>
+                            <li>
+                                <a routerLink='/permissionReport'>Permission Change Report</a>
+                            </li>
+                           
+                        </ul>
+                    </li>
+
+
+                    <!-- <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Super Admin <span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-color">
+
+                            <li>
+                                <a ui-sref="groupPermissions">Add/Remove Group Permissions</a>
+                            </li>
+                        </ul>
+                    </li>-->
+
+                </ul>
+
+
+            </div>
+        </div>
+    </div>
+    <ul class="list-inline pull-right">
+
+        <li>Logged in as <i *ngIf="loggedContact" >{{loggedContact.costarContact.calcName}}</i></li>
+        <!--<li>
+            <a href="" ng-click="showHideLoginAs()">
+                <i class="glyphicon glyphicon-cog"></i>
+            </a>
+        </li>-->
+        <li>
+            <div *ngIf="costarContactService.isSysAdmin || (costarContactService.isEPMTest && costarContactService.env != 'prd')" >
+                <input type="text" [(ngModel)]="networkName" /> <button (click)="getNetworkContact(networkName)" class="btn btn-primary"></button>
+            </div>
+        </li>
+    </ul>
+    <ng2-toasty [position]="'top-center'"></ng2-toasty>
+
+    <router-outlet></router-outlet>
+
+
+</div>
+
