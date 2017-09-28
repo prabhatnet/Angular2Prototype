@@ -18,4 +18,15 @@ Follow along with the course linked above. To start the server:
 ```
 npm install
 npm start
+
+Installation
+-------------
+
+Adding this installation step so that it may be followed consistently by other developers.
+
+## Introduction
+
+## Something Important
+
+## Conclusion
 ```
